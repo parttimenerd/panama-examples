@@ -7,7 +7,7 @@ import java.util.logging.MemoryHandler;
 public class HelloWorld {
     public static void main(String[] args) {
         fopen("LICENSE", "r");
-        var file = fopen("LICENSE", "r");
+        var file = fopen(args[0], "r");
         var line = gets(file, 1024);
         System.out.println(line);
         fclose(file);
