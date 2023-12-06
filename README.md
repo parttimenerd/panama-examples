@@ -29,7 +29,7 @@ Be sure to run the following in a shell with root privileges that uses JDK 21:
 ```shell
 java --enable-preview -cp target/panama.jar --enable-native-access=ALL-UNNAMED me.bechberger.panama.ErrnoExample
 # or to build and run
-./run_errno.sh
+./run.sh ErrnoExample
 ```
 
 License

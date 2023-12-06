@@ -6,15 +6,10 @@ import java.lang.invoke.VarHandle;
 import java.util.function.Function;
 
 import static java.lang.foreign.ValueLayout.JAVA_BYTE;
+import static me.bechberger.panama.PanamaUtil.POINTER;
+import static me.bechberger.panama.PanamaUtil.lookup;
 
 public class ErrnoExample {
-
-    public static final AddressLayout POINTER = ValueLayout.ADDRESS.withTargetLayout(MemoryLayout.sequenceLayout(JAVA_BYTE));
-
-    public static MemorySegment lookup(String symbol) {
-        return Linker.nativeLinker().defaultLookup().find(symbol)
-                .or(() -> SymbolLookup.loaderLookup().find(symbol)).orElseThrow();
-    }
 
     public static void main(String[] args) {
         try (var arena = Arena.ofConfined()) {
