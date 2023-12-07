@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-cd $(dirname $0) || exit 1
+cd $(dirname "$0") || exit 1
 
 # Build
 mvn package || exit 1

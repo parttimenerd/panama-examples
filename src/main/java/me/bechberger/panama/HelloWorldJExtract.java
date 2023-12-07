@@ -2,8 +2,9 @@ package me.bechberger.panama;
 
 import me.bechberger.panama.raw.Lib;
 
-import java.lang.foreign.*;
-import java.lang.invoke.MethodHandle;
+import java.lang.foreign.Arena;
+import java.lang.foreign.MemorySegment;
+import java.lang.foreign.ValueLayout;
 
 public class HelloWorldJExtract {
     public static void main(String[] args) {
@@ -13,13 +14,13 @@ public class HelloWorldJExtract {
         fclose(file);
     }
 
-public static MemorySegment fopen(String filename, String mode) {
-    try (var arena = Arena.ofConfined()) {
-        return Lib.fopen(
-                arena.allocateUtf8String(filename),
-                arena.allocateUtf8String(mode));
+    public static MemorySegment fopen(String filename, String mode) {
+        try (var arena = Arena.ofConfined()) {
+            return Lib.fopen(
+                    arena.allocateUtf8String(filename),
+                    arena.allocateUtf8String(mode));
+        }
     }
-}
 
     public static int fclose(MemorySegment file) {
         return Lib.fclose(file);

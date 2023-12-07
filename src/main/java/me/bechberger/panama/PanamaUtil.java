@@ -5,7 +5,8 @@ import java.lang.foreign.*;
 import static java.lang.foreign.ValueLayout.JAVA_BYTE;
 
 public class PanamaUtil {
-    private PanamaUtil() {}
+    private PanamaUtil() {
+    }
 
     public static final AddressLayout POINTER = ValueLayout.ADDRESS.withTargetLayout(MemoryLayout.sequenceLayout(JAVA_BYTE));
 
