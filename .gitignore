@@ -40,5 +40,8 @@ build/
 
 misc/*
 !misc/headers.h
+!misc/read_line.c
 bin/jextract-*
 src/main/java/me/bechberger/panama/raw
+read_line
+*.out

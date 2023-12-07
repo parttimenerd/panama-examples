@@ -4,6 +4,9 @@ import java.lang.foreign.*;
 import java.lang.invoke.MethodHandle;
 import java.util.logging.MemoryHandler;
 
+/**
+ * The equivalent Java program is in misc/read_line.c
+ */
 public class HelloWorld {
     public static void main(String[] args) {
         var file = fopen(args[0], "r");
