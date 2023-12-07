@@ -6,7 +6,6 @@ import java.util.logging.MemoryHandler;
 
 public class HelloWorld {
     public static void main(String[] args) {
-        fopen("LICENSE", "r");
         var file = fopen(args[0], "r");
         var line = gets(file, 1024);
         System.out.println(line);
@@ -16,15 +15,16 @@ public class HelloWorld {
     private static MethodHandle fopen = Linker.nativeLinker().downcallHandle(
             PanamaUtil.lookup("fopen"),
             FunctionDescriptor.of(ValueLayout.ADDRESS, ValueLayout.ADDRESS, ValueLayout.ADDRESS));
+
     public static MemorySegment fopen(String filename, String mode) {
-        try (var arena = Arena.ofConfined()) {
-            return (MemorySegment) fopen.invokeExact(
-                    arena.allocateUtf8String(filename),
-                    arena.allocateUtf8String(mode));
-        } catch (Throwable t) {
-            throw new RuntimeException(t);
-        }
+    try (var arena = Arena.ofConfined()) {
+        return (MemorySegment) fopen.invokeExact(
+                arena.allocateUtf8String(filename),
+                arena.allocateUtf8String(mode));
+    } catch (Throwable t) {
+        throw new RuntimeException(t);
     }
+}
 
     private static MethodHandle fclose = Linker.nativeLinker().downcallHandle(
             PanamaUtil.lookup("fclose"),
